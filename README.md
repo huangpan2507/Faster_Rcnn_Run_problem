@@ -4,10 +4,12 @@
 1. 首先想跑的是 https://github.com/jwyang/faster-rcnn.pytorch/tree/master 上的代码
 
 首先该仓库有 master 和 pytorch 1.0的分支。
+
 坑之一： -----git clone 时两个分支的路径一摸一样  
   脱坑： 
   git clone -b 分支名 仓库地址
   git clone -b 2.1.6 https://github.com/aspnet/AspNetCore.git
+  
   
 坑之二： -----error: invalid command 'develop'
         我和师兄公用电脑 cuda = 9.0  ubuntu = 18 torch =1.3 想跑之中的 pytorch 1.0 分支 出现一大堆问题，各种百度，例如 如下问题：
@@ -18,6 +20,7 @@
    from distutils.core import setup
    替换成
    from setuptools import setup
+   
 坑之三： ------ImportError: No module named pycocotools.coco
   方法： https://blog.csdn.net/u013591306/article/details/79458220     解决方法是安装ipython： git clone https://github.com/pdollar/coco
         然后 进入PythonAPI目录：   cd coco/PythonAPI
@@ -27,14 +30,17 @@
         from pycocotools import mask 没报错就安装好了。
         重新输入import COCO命令即可若进入PythonAPI目录可以，而运行程序仍然报错则修改环境变量即可：
         vi  ~/.bashrc   在末尾加上export  PATHONPATH=/home/john/coco/PythonAPI:$PATH     #当前PythonAPI目录的绝对路径
+        
    
    win10 64位配置mask-rcnn环境的坑(主要是安装imgaug和pycocotools，解决“No module named ‘pycocotools._mask”
    https://blog.csdn.net/RicardoSuzaku/article/details/86496203    
+   
    方法：pycocotools的安装
    巨坑，直接pip install pycocotools会报错，下载https://github.com/philferriere/cocoapi文件，虚拟环境下cd 到PythonAPI目录下，执行
    python setup.py build_ext install
    会编译并将pycocotools安装到虚拟环境下的Lib/site-packages目录中，编译需要安装visual studio2015。（有的博主推荐的https://github.com/cocodataset/cocoapi地址，我在这个文件中执行python setup.py build_ext instal会报bug）
    安装完成之后python命令进入python环境，能运行from pycocotools.coco import COCO和import pycocotools._mask as _mask即大功告成
+
 
 坑之四： ------- ImportError: cannot import name 'imread' from 'scipy.misc'
    是由于 `imread` is deprecated in SciPy 1.0.0, and will be removed in 1.2.0.
@@ -59,17 +65,20 @@
     python setup.py build
     #build之后会发现lib/下多了个build文件夹
     python setup.py install
-    
+  
+  
  坑之六： ------- RuntimeError : PyTorch was compiled without NumPy support
      接着出现如上报错。 百度没有相应的解答。于是谷歌， 
      https://github.com/pytorch/pytorch/issues/6747
      https://github.com/HazyResearch/metal/issues/101
      https://github.com/HazyResearch/fonduer-tutorials/issues/34 
      里面说到， pytorch 0.4.1也不行， 需要换成 pytorch 0.4.1.post2 并且同时 numpy版本要降成 1.15.0 ，最终发现， 只有 只换pytorch 0.4.1.post2才有用！！！
-     
+   
+   
  最终结果跑出来了： 最终环境为:
  --------[ubuntu 18 + torch 0.4.1.post2 + torchvison 0.2.2 + cuda 9.0 + python 3.7] + 代码: https://github.com/Lite-Java/faster-rcnn.pytorch-0.4.1-
  为了这个网站上的 https://github.com/jwyang/faster-rcnn.pytorch/tree/master  这个faster rcnn试了很多 花了 很多天！！最终换了环境换了其他人的代码！！
+ 
  
  还有：
  1.关于 sudo执行脚本失败command not found问题 加不加 sudo 两个环境不一样 https://blog.csdn.net/u012578322/article/details/79548599
