@@ -96,7 +96,7 @@
    
  最终结果跑出来了： 最终环境为:
  
- [ubuntu 18 + torch 0.4.1.post2 + torchvison 0.2.2 + cuda 9.0 + python 3.7] + 代码: https://github.com/Lite-Java/faster-rcnn.pytorch-0.4.1-
+ [ubuntu 18 + torch 0.4.1.post2 + torchvison 0.2.2 + cuda 9.0 + python 3.7] + 代码: https://github.com/Lite-Java/faster-rcnn.pytorch-0.4.1-   （改代码已转移到我的仓库： https://github.com/huangpan2507/faster-rcnn.pytorch-0.4.1-/tree/master  ）
  
  为了这个网站上的 https://github.com/jwyang/faster-rcnn.pytorch/tree/master  这个faster rcnn试了很多 花了 很多天！！最终换了环境换了其他人的代码！！
  
