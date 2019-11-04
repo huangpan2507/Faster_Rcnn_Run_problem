@@ -96,7 +96,7 @@
    
  最终结果跑出来了： 跑之前需要训练下： 使用python3 
  
- CUDA_VISIBLE_DEVICES=0 python3 trainval_net.py \
+    CUDA_VISIBLE_DEVICES=0 python3 trainval_net.py \
                    --dataset pascal_voc --net vgg16 \
                    --bs 1 --nw 1 \
 				   --epochs 5  \
