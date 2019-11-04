@@ -71,9 +71,32 @@
  --------[ubuntu 18 + torch 0.4.1.post2 + torchvison 0.2.2 + cuda 9.0 + python 3.7] + 代码: https://github.com/Lite-Java/faster-rcnn.pytorch-0.4.1-
  为了这个网站上的 https://github.com/jwyang/faster-rcnn.pytorch/tree/master  这个faster rcnn试了很多 花了 很多天！！最终换了环境换了其他人的代码！！
  
+ 还有：
+ 1.关于 sudo执行脚本失败command not found问题 加不加 sudo 两个环境不一样 https://blog.csdn.net/u012578322/article/details/79548599
+ 2.关于 用sudo ./install.sh 安装软件 提示命令找不到   https://forum.ubuntu.org.cn/viewtopic.php?t=463331 
+   可能原因之一
+   你還沒賦予可執行屬性
+   sudo chmod +x ./install.sh     
+ 3. AttributeError: 'dict' object has no attribute 'iteritems'    https://blog.csdn.net/qq_30638831/article/details/79928463 
+    Python3.5中：iteritems变为items
+    
+ 4. make: *** No targets specified and no makefile found. Stop.   https://blog.csdn.net/weiyangdong/article/details/79203712
+   错误解决办法：
+    wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.6.tar.gz
+    tar zxvf ncurses-5.6.tar.gz
+    cd ncurses-5.6
+    ./configure -prefix=/usr/local -with-shared -without-debug
+    make
+    make install
+  
+
+此处报错我解决的办法很低级，之所以会遇到这个错误提示，是因为我在安装 nginx 时，没有执行 ./configure 就去 make 了，才导致的报错，结果都尝试了一遍之后，才惊醒。写在此处以提醒各位看官不要犯同样的错误。
+
  
  参考文章：
  http://www.pianshen.com/article/6481145026/
  https://blog.csdn.net/hai008007/article/details/85482303
  https://blog.csdn.net/qq_41644339/article/details/97641164#commentBox
+ https://blog.csdn.net/m0_38052384/article/details/91359131
+
      
