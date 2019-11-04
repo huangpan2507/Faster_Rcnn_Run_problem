@@ -6,22 +6,27 @@
 首先该仓库有 master 和 pytorch 1.0的分支。
 
 坑之一： -----git clone 时两个分支的路径一摸一样  
-  脱坑： 
-  git clone -b 分支名 仓库地址
-  git clone -b 2.1.6 https://github.com/aspnet/AspNetCore.git
+  脱坑：
+  
+    git clone -b 分支名 仓库地址
+    git clone -b 2.1.6 https://github.com/aspnet/AspNetCore.git
+  
   
   
 坑之二： -----error: invalid command 'develop'
         我和师兄公用电脑 cuda = 9.0  ubuntu = 18 torch =1.3 想跑之中的 pytorch 1.0 分支 出现一大堆问题，各种百度，例如 如下问题：
         运行 python setup.py develop  出现 error: invalid command 'develop'
         
-   脱坑： 
-   https://github.com/django-extensions/django-extensions/issues/92 按照上面说的 
-   将下面这句由
-   from distutils.core import setup
-   替换成
-   from setuptools import setup
+   脱坑：
    
+     https://github.com/django-extensions/django-extensions/issues/92 按照上面说的 
+     将下面这句由
+     from distutils.core import setup
+     替换成
+     from setuptools import setup
+  
+  
+  
 坑之三： ------ImportError: No module named pycocotools.coco
 
   方法： https://blog.csdn.net/u013591306/article/details/79458220     解决方法是安装ipython： git clone https://github.com/pdollar/coco
@@ -40,24 +45,27 @@
    
    方法：pycocotools的安装
    
-   巨坑，直接pip install pycocotools会报错，下载https://github.com/philferriere/cocoapi文件，虚拟环境下cd 到PythonAPI目录下，执行
-   python setup.py build_ext install
-   会编译并将pycocotools安装到虚拟环境下的Lib/site-packages目录中，编译需要安装visual studio2015。（有的博主推荐的https://github.com/cocodataset/cocoapi地址，我在这个文件中执行python setup.py build_ext instal会报bug）
-   安装完成之后python命令进入python环境，能运行from pycocotools.coco import COCO和import pycocotools._mask as _mask即大功告成
+     巨坑，直接pip install pycocotools会报错，下载https://github.com/philferriere/cocoapi文件，虚拟环境下cd 到PythonAPI目录下，执行
+     python setup.py build_ext install
+     会编译并将pycocotools安装到虚拟环境下的Lib/site-packages目录中，编译需要安装visual studio2015。（有的博主推荐的https://github.com     /cocodataset/cocoapi地址，我在这个文件中执行python setup.py build_ext instal会报bug）
+     安装完成之后python命令进入python环境，能运行from pycocotools.coco import COCO和import pycocotools._mask as _mask即大功告成
+
 
 
 坑之四： ------- ImportError: cannot import name 'imread' from 'scipy.misc'
 
    是由于 `imread` is deprecated in SciPy 1.0.0, and will be removed in 1.2.0.
    Use ``imageio.imread`` instead.
-   处理方法： 首先pip3 install imageio;
-   然后 import imageio
-   代码里imageio.imread()处理
+     
+    处理方法： 首先pip3 install imageio;
+    然后 import imageio
+    代码里imageio.imread()处理
    
-   
+  
+  
  坑之五： -------最后运行，报错，说是显卡驱动太低， 或者更换 pytorch版本  （ubuntu 18 + cuda 9.0 + torch 1.3 + torchvison 0.3以上）
  
-     方法： 
+    方法： 
            我换了pytorch=0.4.1 同时 torchvison = 0.2.2 
            pip install torch == 0.4.1   pip install torchvison == 0.2.2  （这两个搭配） 
            同时换了这个版本的代码：https://github.com/Lite-Java/faster-rcnn.pytorch-0.4.1- （其里面标注pytorch0.4.1 python3.6 cuda9.0 cuDNNv7 ）
@@ -71,6 +79,7 @@
     python setup.py build
     #build之后会发现lib/下多了个build文件夹
     python setup.py install
+  
   
   
  坑之六： ------- RuntimeError : PyTorch was compiled without NumPy support
