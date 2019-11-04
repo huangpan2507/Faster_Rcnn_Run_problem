@@ -94,7 +94,15 @@
      里面说到， pytorch 0.4.1也不行， 需要换成 pytorch 0.4.1.post2 并且同时 numpy版本要降成 1.15.0 ，最终发现， 只有 只换pytorch 0.4.1.post2才有用！！！
    
    
- 最终结果跑出来了： 最终环境为:
+ 最终结果跑出来了： 跑之前需要训练下： 使用python3 
+ CUDA_VISIBLE_DEVICES=0 python3 trainval_net.py \
+                   --dataset pascal_voc --net vgg16 \
+                   --bs 1 --nw 1 \
+				   --epochs 5  \
+                   --lr 0.001 --lr_decay_step 5 \
+                   --cuda
+ 
+ 最终环境为:
  
  [ubuntu 18 + torch 0.4.1.post2 + torchvison 0.2.2 + cuda 9.0 + python 3.7] + 代码: https://github.com/Lite-Java/faster-rcnn.pytorch-0.4.1-   （改代码已转移到我的仓库： https://github.com/huangpan2507/faster-rcnn.pytorch-0.4.1-/tree/master  ）
  
